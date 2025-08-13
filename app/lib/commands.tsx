@@ -69,7 +69,7 @@ export const commands: Record<string, Command> = {
         {" "}
         {/* smaller font on mobile */}
         {/* ASCII Art - scrollable on mobile */}
-        <pre className="leading-none hidden mb-2 lg:block">
+        <pre className="leading-none hidden sm:block mb-2 text-sm">
           {`
 +=------++*********##***+++=---:::::::--==++++**+*
 ++------++*##**####**++===---------===***+***#####
@@ -142,16 +142,6 @@ Linkedin: `}
               sajat-bajracharya
             </a>
             {`
-Twitter:  `}
-            <a
-              href="https://x.com/bajj_lightyear"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="no-underline hover:text-blue-300 hover:underline "
-            >
-              bajj_lightyear
-            </a>
-            {`
 Studying: `}
             <span className="whitespace-nowrap sm:whitespace-pre-wrap">
               Bachelor of Computer Application (D.A.V. College)
@@ -170,12 +160,27 @@ Studying: `}
       </div>
     ),
   },
-
   aboutme: {
-    description: "Brief personal intro",
-    run: () =>
-      `I’m a passionate full stack developer who loves building dynamic and user-friendly web applications. I recently completed my first internship, where I gained hands-on experience in both front-end and back-end development. I’m always curious, eager to learn new technologies, and driven to turn ideas into real projects that make a difference.`,
-  },
+  description: "Brief personal intro",
+  run: () => (
+    <p className="sm:text-sm">
+      I’m a{" "}
+      <span className="text-yellow-400 font-semibold">passionate full stack developer</span>{" "}
+      who loves building{" "}
+      <span className="text-green-400 font-semibold">dynamic</span> and{" "}
+      <span className="text-green-400 font-semibold">user-friendly</span> web applications.  
+      I recently completed my{" "}
+      <span className="text-blue-400 font-semibold">first internship</span>, where I gained
+      hands-on experience in both{" "}
+      <span className="text-purple-400 font-semibold">front-end</span> and{" "}
+      <span className="text-purple-400 font-semibold">back-end</span> development.  
+      I’m always{" "}
+      <span className="text-pink-400 font-semibold">curious</span>,{" "}
+      <span className="text-pink-400 font-semibold">eager to learn</span> new technologies, and
+      driven to turn ideas into real projects that make a difference.
+    </p>
+  ),
+},
   experience: {
     description: "Shows my work experience",
     run: () => (
@@ -192,32 +197,32 @@ Studying: `}
       </div>
     ),
   },
-  contact: {
-    description: "How to contact you",
-    run: () => (
-      <div className="sm:text-sm">
-        Email:{" "}
-        <a
-          href="mailto:sajatbazz@gmail.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-underline hover:text-blue-300 hover:underline"
-        >
-          sajatbazz@gmail.com
-        </a>
-        <br />
-        LinkedIn:{" "}
-        <a
-          href="https://linkedin.com/in/sajat-bajracharya"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="no-underline hover:text-blue-300 hover:underline"
-        >
-          linkedin.com/in/sajat-bajracharya
-        </a>
-      </div>
-    ),
-  },
+contact: {
+  description: "How to contact you",
+  run: () => (
+    <div className="sm:text-sm">
+      <span className="text-yellow-400 font-bold">Email:</span>{" "}
+      <a
+        href="mailto:sajatbazz@gmail.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline hover:text-blue-300 hover:underline"
+      >
+        sajatbazz@gmail.com
+      </a>
+      <br />
+      <span className="text-yellow-400 font-bold">LinkedIn:</span>{" "}
+      <a
+        href="https://linkedin.com/in/sajat-bajracharya"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline hover:text-blue-300 hover:underline"
+      >
+        linkedin.com/in/sajat-bajracharya
+      </a>
+    </div>
+  ),
+},
   clear: {
     description: "Clears the screen",
     run: () => null,
