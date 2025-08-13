@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.block-cursor::after {
+  content: " ";
+  display: inline-block;
+  width: 0.6em;
+  height: 1em;
+  background-color: currentColor;
+  animation: blink 1s steps(1) infinite;
+  vertical-align: bottom;
+  position: relative;
+  left: -0.6em;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.terminal-element::before {
+  content: "shinu@portfolio:~$ ";
+  color: #39ff14; /* terminal green */
+  font-weight: bold;
+}
+
+.terminal-element[data-terminal="aboutme"] {
+  border-left: 2px solid #39ff14; /* makes it look like terminal line */
+  padding-left: 6px;
+}
