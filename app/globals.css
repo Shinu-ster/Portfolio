@@ -53,3 +53,8 @@ body {
   border-left: 2px solid #39ff14; /* makes it look like terminal line */
   padding-left: 6px;
 }
+
+.terminal ::selection {
+  background-color: #d6d6d6; /* Tailwind yellow-400 */
+  color: black; /* optional, makes text readable */
+}

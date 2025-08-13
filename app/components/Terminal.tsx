@@ -22,6 +22,19 @@ export default function Terminal() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      // Ignore clicks on inputs themselves to avoid double focusing
+      if (!(e.target instanceof HTMLInputElement)) {
+        inputRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => document.removeEventListener("click", handleClick);
+  }, []);
+
   const runCommand = async (cmd: string) => {
     const command = cmd.trim().toLowerCase();
     const output = commands[command]?.run?.();
@@ -50,7 +63,7 @@ export default function Terminal() {
 
   return (
     <div
-      className="w-full max-w-4xl mx-auto font-mono text-xs sm:text-sm mb-2" // added responsive font sizes here
+      className="terminal w-full max-w-4xl mx-auto font-mono text-xs sm:text-sm mb-2" // added responsive font sizes here
       onClick={() => inputRef.current?.focus()}
     >
       {history.map((line, i) => (

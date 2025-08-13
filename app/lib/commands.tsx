@@ -9,20 +9,30 @@ export const commands: Record<string, Command> = {
     description: "List all available commands",
     run: () => (
       <div className="font-mono text-sm whitespace-pre-line max-w-full">
-        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">NAME</div>
-        <div className="mb-4 text-xs sm:text-sm">help - list all available commands</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">
+          NAME
+        </div>
+        <div className="mb-4 text-xs sm:text-sm">
+          help - list all available commands
+        </div>
 
-        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">SYNOPSIS</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">
+          SYNOPSIS
+        </div>
         <div className="mb-4">
           <code>help</code>
         </div>
 
-        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">DESCRIPTION</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">
+          DESCRIPTION
+        </div>
         <div className="mb-4">
           Displays the list of commands you can run in this terminal.
         </div>
 
-        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">COMMANDS</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">
+          COMMANDS
+        </div>
         <div className="pl-4 space-y-1 text-xs sm:text-sm">
           <div>
             <span className="text-white">neofetch</span> - show user info
@@ -92,7 +102,7 @@ export const commands: Record<string, Command> = {
         </pre>
         {/* Right column */}
         <div className="ml-4 mt-2 lg:ml-0 flex flex-col gap-2">
-          <pre className="whitespace-pre ml-6">{`shinu@sajat-pc`}</pre>
+          <pre className="whitespace-pre ml-6 text-white">{`shinu@sajat-pc`}</pre>
           {`-------------------------`}
           <pre className="whitespace-pre-wrap break-words">
             {`Name:     Sajat Bajracharya
@@ -130,6 +140,16 @@ Linkedin: `}
               className="no-underline hover:text-blue-300 hover:underline "
             >
               sajat-bajracharya
+            </a>
+            {`
+Twitter:  `}
+            <a
+              href="https://x.com/bajj_lightyear"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline hover:text-blue-300 hover:underline "
+            >
+              bajj_lightyear
             </a>
             {`
 Studying: `}
@@ -213,8 +233,12 @@ Studying: `}
 
         if (!Array.isArray(repos)) return "Error fetching repos";
 
-        
-        const pinnedRepoNames = ["Academia-Reads", "Tech-Repair-Shop", "Bagchal-Duel","Ctrl-Alt-Buy"]; 
+        const pinnedRepoNames = [
+          "Academia-Reads",
+          "Tech-Repair-Shop",
+          "Bagchal-Duel",
+          "Ctrl-Alt-Buy",
+        ];
         const filteredRepos = repos.filter((repo) =>
           pinnedRepoNames.includes(repo.name)
         );
@@ -223,7 +247,9 @@ Studying: `}
 
         return (
           <div className="font-mono text-sm space-y-2  sm:text-sm">
-            <div className="font-bold text-green-400 text-xs sm:text-sm">GitHub Repositories</div>
+            <div className="font-bold text-green-400 text-xs sm:text-sm">
+              GitHub Repositories
+            </div>
             {filteredRepos.map((repo) => (
               <div key={repo.id}>
                 <span className="text-white">{repo.name}</span> -{" "}
@@ -260,21 +286,20 @@ Studying: `}
     },
   },
   downloadcv: {
-  description: "Download my CV",
-  run: () => {
-    // URL of your CV (you can host it in /public folder of Next.js)
-    const cvUrl = "/Sajat-Bajracharya-CV.pdf";
+    description: "Download my CV",
+    run: () => {
+      // URL of your CV (you can host it in /public folder of Next.js)
+      const cvUrl = "/Sajat-Bajracharya-CV.pdf";
 
-    // Create a temporary link to download the file
-    const link = document.createElement("a");
-    link.href = cvUrl;
-    link.download = "Sajat-Bajracharya-CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      // Create a temporary link to download the file
+      const link = document.createElement("a");
+      link.href = cvUrl;
+      link.download = "Sajat-Bajracharya-CV.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    return "Downloading CV...";
+      return "Downloading CV...";
+    },
   },
-},
-
 };
