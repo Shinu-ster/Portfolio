@@ -3,7 +3,7 @@ import { JSX, useEffect, useRef, useState } from "react";
 import { commands } from "../lib/commands";
 
 export default function Terminal() {
-  const [history, setHistory] = useState<string[] | JSX.Element[]>([]);
+  const [history, setHistory] = useState<(string | JSX.Element)[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const [input, setInput] = useState("");
   const [booted, setBooted] = useState(false);
@@ -22,7 +22,7 @@ export default function Terminal() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
-  const runCommand = (cmd: string) => {
+  const runCommand = async (cmd: string) => {
     const command = cmd.trim().toLowerCase();
     const output = commands[command]?.run?.();
 
@@ -31,16 +31,19 @@ export default function Terminal() {
       return;
     }
 
+    // If the command is async, await it
+    const result = output instanceof Promise ? await output : output;
+
     setHistory((prev) => [
       ...prev,
       `shinu@sajat-pc:~$ ${command}`,
-      output || `Command not found: ${command}`,
+      result || `Command not found: ${command}`,
     ]);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = async (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      runCommand(input);
+      await runCommand(input);
       setInput("");
     }
   };
@@ -51,7 +54,7 @@ export default function Terminal() {
       onClick={() => inputRef.current?.focus()}
     >
       {history.map((line, i) => (
-        <div key={i} className="whitespace-pre-wrap mt-1">
+        <div key={i} className="whitespace-pre-wrap">
           {line}
         </div>
       ))}

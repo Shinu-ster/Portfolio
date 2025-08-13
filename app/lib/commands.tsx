@@ -9,21 +9,21 @@ export const commands: Record<string, Command> = {
     description: "List all available commands",
     run: () => (
       <div className="font-mono text-sm whitespace-pre-line max-w-full">
-        <div className="mb-2 font-bold text-green-400">NAME</div>
-        <div className="mb-4">help - list all available commands</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">NAME</div>
+        <div className="mb-4 text-xs sm:text-sm">help - list all available commands</div>
 
-        <div className="mb-2 font-bold text-green-400">SYNOPSIS</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">SYNOPSIS</div>
         <div className="mb-4">
           <code>help</code>
         </div>
 
-        <div className="mb-2 font-bold text-green-400">DESCRIPTION</div>
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">DESCRIPTION</div>
         <div className="mb-4">
           Displays the list of commands you can run in this terminal.
         </div>
 
-        <div className="mb-2 font-bold text-green-400">COMMANDS</div>
-        <div className="pl-4 space-y-1">
+        <div className="mb-2 font-bold text-green-400 text-xs sm:text-sm">COMMANDS</div>
+        <div className="pl-4 space-y-1 text-xs sm:text-sm">
           <div>
             <span className="text-white">neofetch</span> - show user info
           </div>
@@ -39,6 +39,9 @@ export const commands: Record<string, Command> = {
           </div>
           <div>
             <span className="text-white">contact</span> - how to contact
+          </div>
+          <div>
+            <span className="text-white">downloadcv</span> - Download my CV
           </div>
           <div>
             <span className="text-white">clear</span> - clear the terminal
@@ -131,7 +134,7 @@ Linkedin: `}
             {`
 Studying: `}
             <span className="whitespace-nowrap sm:whitespace-pre-wrap">
-              Bachelor of Computer Application (Final year)
+              Bachelor of Computer Application (D.A.V. College)
             </span>
 
             {`
@@ -172,7 +175,7 @@ Studying: `}
   contact: {
     description: "How to contact you",
     run: () => (
-      <div>
+      <div className="sm:text-sm">
         Email:{" "}
         <a
           href="mailto:sajatbazz@gmail.com"
@@ -211,7 +214,7 @@ Studying: `}
         if (!Array.isArray(repos)) return "Error fetching repos";
 
         
-        const pinnedRepoNames = ["Academia-Reads", "Tech-Repair-Shop"]; 
+        const pinnedRepoNames = ["Academia-Reads", "Tech-Repair-Shop", "Bagchal-Duel","Ctrl-Alt-Buy"]; 
         const filteredRepos = repos.filter((repo) =>
           pinnedRepoNames.includes(repo.name)
         );
@@ -219,8 +222,8 @@ Studying: `}
         if (filteredRepos.length === 0) return "No repos found";
 
         return (
-          <div className="font-mono text-sm space-y-2">
-            <div className="font-bold text-green-400">GitHub Repositories</div>
+          <div className="font-mono text-sm space-y-2  sm:text-sm">
+            <div className="font-bold text-green-400 text-xs sm:text-sm">GitHub Repositories</div>
             {filteredRepos.map((repo) => (
               <div key={repo.id}>
                 <span className="text-white">{repo.name}</span> -{" "}
@@ -252,8 +255,26 @@ Studying: `}
           </div>
         );
       } catch (error) {
-        return `Error fetching repos: ${error.message}`;
+        return `Error fetching repos ${error}`;
       }
     },
   },
+  downloadcv: {
+  description: "Download my CV",
+  run: () => {
+    // URL of your CV (you can host it in /public folder of Next.js)
+    const cvUrl = "/Sajat-Bajracharya-CV.pdf";
+
+    // Create a temporary link to download the file
+    const link = document.createElement("a");
+    link.href = cvUrl;
+    link.download = "Sajat-Bajracharya-CV.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    return "Downloading CV...";
+  },
+},
+
 };
