@@ -45,16 +45,16 @@ body {
 
 .terminal-element::before {
   content: "shinu@portfolio:~$ ";
-  color: #39ff14; /* terminal green */
+  color: #39ff14; 
   font-weight: bold;
 }
 
 .terminal-element[data-terminal="aboutme"] {
-  border-left: 2px solid #39ff14; /* makes it look like terminal line */
+  border-left: 2px solid #39ff14; 
   padding-left: 6px;
 }
 
 .terminal ::selection {
-  background-color: #d6d6d6; /* Tailwind yellow-400 */
-  color: black; /* optional, makes text readable */
+  background-color: #d6d6d6; 
+  color: black;
 }

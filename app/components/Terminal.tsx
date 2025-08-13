@@ -75,10 +75,14 @@ export default function Terminal() {
       <div className="flex text-xs sm:text-sm">
         <span className="pr-2">shinu@sajat-pc:~$</span>
         <span>{input}</span>
-        <span className="w-2 h-5 bg-green-600 animate-pulse inline-block ml-1" />
+        <span
+          className="inline-block ml-1 mt-0.5 bg-green-600 animate-pulse 
+             w-[0.9em] h-[0.9em] sm:w-[0.6em] sm:h-[1em] 
+             "
+        />
         <input
           ref={inputRef}
-          className="absolute opacity-0"
+          className="absolute opacity-0 pointer-events-none"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}

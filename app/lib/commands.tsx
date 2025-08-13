@@ -161,33 +161,44 @@ Studying: `}
     ),
   },
   aboutme: {
-  description: "Brief personal intro",
-  run: () => (
-    <p className="sm:text-sm">
-      I’m a{" "}
-      <span className="text-yellow-400 font-semibold">passionate full stack developer</span>{" "}
-      who loves building{" "}
-      <span className="text-green-400 font-semibold">dynamic</span> and{" "}
-      <span className="text-green-400 font-semibold">user-friendly</span> web applications.  
-      I recently completed my{" "}
-      <span className="text-blue-400 font-semibold">first internship</span>, where I gained
-      hands-on experience in both{" "}
-      <span className="text-purple-400 font-semibold">front-end</span> and{" "}
-      <span className="text-purple-400 font-semibold">back-end</span> development.  
-      I’m always{" "}
-      <span className="text-pink-400 font-semibold">curious</span>,{" "}
-      <span className="text-pink-400 font-semibold">eager to learn</span> new technologies, and
-      driven to turn ideas into real projects that make a difference.
-    </p>
-  ),
-},
+    description: "Brief personal intro",
+    run: () => (
+      <p className="sm:text-sm">
+        I’m a{" "}
+        <span className="text-yellow-400 font-semibold">
+          passionate full stack developer
+        </span>{" "}
+        who loves building{" "}
+        <span className="text-green-400 font-semibold">dynamic</span> and{" "}
+        <span className="text-green-400 font-semibold">user-friendly</span> web
+        applications. I recently completed my{" "}
+        <span className="text-blue-400 font-semibold">first internship</span>,
+        where I gained hands-on experience in both{" "}
+        <span className="text-purple-400 font-semibold">front-end</span> and{" "}
+        <span className="text-purple-400 font-semibold">back-end</span>{" "}
+        development. I’m always{" "}
+        <span className="text-pink-400 font-semibold">curious</span>,{" "}
+        <span className="text-pink-400 font-semibold">eager to learn</span> new
+        technologies, and driven to turn ideas into real projects that make a
+        difference.
+      </p>
+    ),
+  },
   experience: {
     description: "Shows my work experience",
     run: () => (
       <div className="font-mono text-sm">
         <span className="text-green-400">January - April 2024</span> —&gt;{" "}
         <span className="">Full Stack Developer Intern</span> (
-        <span className="text-yellow-400">MERN</span>) at Samparka.
+        <span className="text-yellow-400">MERN</span>) at{" "}
+        <a
+          href="https://www.linkedin.com/company/samparkacloudloyalty"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-underline hover:text-blue-300 hover:underline"
+        >
+          Samparka Cloud Loyalty
+        </a>.
         <br />
         Worked on building and enhancing a{" "}
         <span className="text-yellow-400">Progressive Web App (PWA)</span> using
@@ -197,32 +208,32 @@ Studying: `}
       </div>
     ),
   },
-contact: {
-  description: "How to contact you",
-  run: () => (
-    <div className="sm:text-sm">
-      <span className="text-yellow-400 font-bold">Email:</span>{" "}
-      <a
-        href="mailto:sajatbazz@gmail.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline hover:text-blue-300 hover:underline"
-      >
-        sajatbazz@gmail.com
-      </a>
-      <br />
-      <span className="text-yellow-400 font-bold">LinkedIn:</span>{" "}
-      <a
-        href="https://linkedin.com/in/sajat-bajracharya"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="no-underline hover:text-blue-300 hover:underline"
-      >
-        linkedin.com/in/sajat-bajracharya
-      </a>
-    </div>
-  ),
-},
+  contact: {
+    description: "How to contact you",
+    run: () => (
+      <div className="sm:text-sm">
+        <span className="text-yellow-400 font-bold">Email:</span>{" "}
+        <a
+          href="mailto:sajatbazz@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-underline hover:text-blue-300 hover:underline"
+        >
+          sajatbazz@gmail.com
+        </a>
+        <br />
+        <span className="text-yellow-400 font-bold">LinkedIn:</span>{" "}
+        <a
+          href="https://linkedin.com/in/sajat-bajracharya"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="no-underline hover:text-blue-300 hover:underline"
+        >
+          sajat-bajracharya
+        </a>
+      </div>
+    ),
+  },
   clear: {
     description: "Clears the screen",
     run: () => null,
@@ -237,6 +248,37 @@ contact: {
         const repos = await response.json();
 
         if (!Array.isArray(repos)) return "Error fetching repos";
+
+        const highlightKeywords = (text: string) => {
+          if (!text) return "";
+
+          const keywords = [
+            "PHP",
+            "MySQL",
+            "PHPMailer",
+            "OTP",
+            "PHPOffice",
+            "Alpha-Beta pruning",
+            "Stripe",
+            "webhook",
+            "Kinde authentication",
+            "Sentry error tracking",
+          ];
+
+          // Sort keywords by length descending
+          keywords.sort((a, b) => b.length - a.length);
+
+          let highlighted = text;
+          keywords.forEach((word) => {
+            const regex = new RegExp(`(${word})`, "gi");
+            highlighted = highlighted.replace(
+              regex,
+              `<span class="text-yellow-400 font-semibold">$1</span>`
+            );
+          });
+
+          return highlighted;
+        };
 
         const pinnedRepoNames = [
           "Academia-Reads",
@@ -258,7 +300,13 @@ contact: {
             {filteredRepos.map((repo) => (
               <div key={repo.id}>
                 <span className="text-white">{repo.name}</span> -{" "}
-                {repo.description || "No description"}
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: highlightKeywords(
+                      repo.description || "No description"
+                    ),
+                  }}
+                />
                 <br />
                 <a
                   href={repo.html_url}
@@ -270,16 +318,14 @@ contact: {
                 </a>
                 <br />
                 {repo.homepage && (
-                  <>
-                    <a
-                      href={repo.homepage}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-300 hover:underline"
-                    >
-                      Demo
-                    </a>
-                  </>
+                  <a
+                    href={repo.homepage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-300 hover:underline"
+                  >
+                    Demo
+                  </a>
                 )}
               </div>
             ))}
