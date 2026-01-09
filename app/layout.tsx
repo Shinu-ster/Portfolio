@@ -13,8 +13,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.sajatbajracharya.com.np"),
   title: "Sajat Bajracharya | Portfolio",
   description: "Portfolio of Sajat Bajracharya showcasing projects, experience, and skills in web development and programming.",
+  alternates: {
+    canonical: "https://www.sajatbajracharya.com.np"
+  },
 };
 
 export default function RootLayout({
