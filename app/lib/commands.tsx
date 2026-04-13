@@ -65,11 +65,9 @@ export const commands: Record<string, Command> = {
   neofetch: {
     description: "Shows user info like neofetch",
     run: () => (
-      <div className="flex flex-col lg:flex-row gap-4 font-mono text-xs sm:text-sm">
-        {" "}
-        {/* smaller font on mobile */}
-        {/* ASCII Art - scrollable on mobile */}
-        <pre className="leading-none hidden sm:block mb-2 text-sm">
+      <div className="flex flex-col lg:flex-row gap-4 font-mono text-xs sm:text-sm overflow-hidden">
+        {/* ASCII Art - hidden on mobile */}
+        <pre className="leading-none hidden sm:block mb-2 text-sm shrink-0">
           {`
 +=------++*********##***+++=---:::::::--==++++**+*
 ++------++*##**####**++===---------===***+***#####
@@ -100,58 +98,71 @@ export const commands: Record<string, Command> = {
 ...*%%@@@@@%##%#%%%%%%%#%%@%%%%%%%##***%%%##:.....
 `}
         </pre>
+
         {/* Right column */}
-        <div className="ml-4 mt-2 lg:ml-0 flex flex-col gap-2">
-          <pre className="whitespace-pre ml-6 text-white">{`shinu@sajat-pc`}</pre>
-          {`-------------------------`}
-          <pre className="whitespace-pre-wrap break-words">
-            {`Name:     Sajat Bajracharya
-Location: Lalitpur, Nepal
-Stack:    `}
-            <span className="whitespace-pre-wrap break-words">
-              Next.js, React, Typescript, Python
-            </span>
-            {`
-Mail:     `}
-            <a
-              href="mailto:sajatbazz@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="no-underline hover:text-blue-300 hover:underline "
-            >
-              sajatbazz@gmail.com
-            </a>
-            {`
-Github:   `}
-            <a
-              href="https://github.com/Shinu-ster"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="no-underline hover:text-blue-300 hover:underline "
-            >
-              Shinu-ster
-            </a>
-            {`
-Linkedin: `}
-            <a
-              href="https://www.linkedin.com/in/sajat-bajracharya"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="no-underline hover:text-blue-300 hover:underline "
-            >
-              sajat-bajracharya
-            </a>
-            {`
-Studying: `}
-            <span className="whitespace-nowrap sm:whitespace-pre-wrap">
-              Bachelor of Computer Application (D.A.V. College)
-            </span>
+        <div className="flex flex-col gap-2 w-full min-w-0">
+          <div className="flex flex-col">
+            <span className="text-white font-bold">{`shinu@sajat-pc`}</span>
+            <span className="text-green-400">{`-------------------------`}</span>
+          </div>
 
-            {`
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Name:</span>
+              <span>Sajat Bajracharya</span>
+            </div>
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Location:</span>
+              <span>Lalitpur, Nepal</span>
+            </div>
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Stack:</span>
+              <span className="flex-1 break-words">Next.js, React, Typescript, Python</span>
+            </div>
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Mail:</span>
+              <a
+                href="mailto:sajatbazz@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline hover:text-blue-300 hover:underline break-all"
+              >
+                sajatbazz@gmail.com
+              </a>
+            </div>
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Github:</span>
+              <a
+                href="https://github.com/Shinu-ster"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline hover:text-blue-300 hover:underline break-all"
+              >
+                Shinu-ster
+              </a>
+            </div>
+            <div className="flex flex-row">
+              <span className=" font-bold min-w-[11ch] shrink-0">Linkedin:</span>
+              <a
+                href="https://www.linkedin.com/in/sajat-bajracharya"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="no-underline hover:text-blue-300 hover:underline break-all"
+              >
+                sajat-bajracharya
+              </a>
+            </div>
+            <div className="flex flex-row">
+              <span className="min-w-[11ch] font-bold shrink-0">Studying:</span>
+              <span className="flex-1 break-words">
+                Bachelor of Computer Application (D.A.V. College)
+              </span>
+            </div>
+          </div>
 
--------------------------
-`}
-          </pre>
+          <div className="text-green-400">
+            -------------------------
+          </div>
 
           <p className="font-mono text-xs sm:text-sm mt-1 mb-2">
             Type <span className="text-white">help</span> to see more commands
